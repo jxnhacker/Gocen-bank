@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registered Loans</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; }
+    table {
+      width: 90%; margin: 30px auto;
+      background: white; border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th { background: #003366; color: white; }
+  </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Registered Loan Records</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>NID</th>
+    <th>Phone</th>
+    <th>Amount</th>
+    <th>Purpose</th>
+  </tr>
+  <tbody id="data"></tbody>
+</table>
+
+<script>
+let loans = JSON.parse(localStorage.getItem("loans")) || [];
+let rows = "";
+
+loans.forEach(l => {
+  rows += `
+    <tr>
+      <td>${l.name}</td>
+      <td>${l.nid}</td>
+      <td>${l.phone}</td>
+      <td>${l.amount}</td>
+      <td>${l.purpose}</td>
+    </tr>`;
+});
+
+document.getElementById("data").innerHTML = rows;
+</script>
+
+</body>
+</html>
