@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GOCEN Bank – Loan Registration</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; }
+    .box {
+      width: 400px; margin: 40px auto;
+      background: white; padding: 20px;
+      border-radius: 8px;
+    }
+    input, textarea, button {
+      width: 100%; padding: 10px;
+      margin: 8px 0;
+    }
+    button {
+      background: #003366;
+      color: white; border: none;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Loan Registration</h2>
+
+  <input id="name" placeholder="Full Name">
+  <input id="nid" placeholder="National ID">
+  <input id="phone" placeholder="Phone Number">
+  <input id="amount" placeholder="Loan Amount">
+  <textarea id="purpose" placeholder="Loan Purpose"></textarea>
+
+  <button onclick="saveLoan()">Register Loan</button>
+  <br><br>
+  <a href="view.html">View Registered Loans</a>
+</div>
+
+<script>
+function saveLoan() {
+  let loans = JSON.parse(localStorage.getItem("loans")) || [];
+
+  let loan = {
+    name: name.value,
+    nid: nid.value,
+    phone: phone.value,
+    amount: amount.value,
+    purpose: purpose.value
+  };
+
+  loans.push(loan);
+  localStorage.setItem("loans", JSON.stringify(loans));
+
+  alert("Loan registered successfully!");
+}
+</script>
+
+</body>
+</html>
